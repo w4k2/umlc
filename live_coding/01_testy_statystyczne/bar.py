@@ -1,35 +1,42 @@
 import numpy as np
-from sklearn.datasets import load_iris, load_breast_cancer
-from sklearn.model_selection import RepeatedStratifiedKFold, ShuffleSplit
+
+from sklearn.datasets import load_breast_cancer, load_iris, make_classification
+from sklearn.model_selection import ShuffleSplit, RepeatedStratifiedKFold
 from sklearn.metrics import accuracy_score
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import NearestCentroid, KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
-split = RepeatedStratifiedKFold(n_splits=2, n_repeats=50)
+from classifiers.random import RandomClassifier
+from classifiers.dumb import DumbClassifier
 
-X, y = load_iris(return_X_y=True)
+splits = RepeatedStratifiedKFold(n_splits=5, n_repeats=2)
 
-scores_a =[]
-scores_b = []
+X, y = make_classification(n_samples=500, flip_y=0, weights=[0.99, 0.01], return_X_y=True)
 
-for train, test in split.split(X, y):
+scores = []
+
+for train, test in splits.split(X, y):
     clf = KNeighborsClassifier()
     clf.fit(X[train], y[train])
     y_pred = clf.predict(X[test])
+    score_1 = accuracy_score(y[test], y_pred)
 
-    score = accuracy_score(y[test], y_pred)
-    scores_a.append(score)
-    print('A', f"{score:.3f}")
-
-    clf = GaussianNB()
+    clf = DecisionTreeClassifier()
     clf.fit(X[train], y[train])
     y_pred = clf.predict(X[test])
+    score_2 = accuracy_score(y[test], y_pred)
 
-    score = accuracy_score(y[test], y_pred)
-    scores_b.append(score)
-    print('B', f"{score:.3f}")
+    scores.append([score_1, score_2])
 
-    print('--' * 20)
+scores = np.array(scores)
 
-print(np.sum(np.array(scores_a) > np.array(scores_b)), '|', len(scores_a))
+for i, (mean, std) in enumerate(zip(np.mean(scores, axis=0), np.std(scores, axis=0))):
+    print(f"{i}: {mean:.2f} ({std:.2f})")
+
+print('.' * 20)
+print("wins:", np.sum(scores[:, 0] > scores[:, 1]))
+print("ties:", np.sum(scores[:, 0] == scores[:, 1]))
+print("looses:", np.sum(scores[:, 0] < scores[:, 1]))
+
+print('-' * 20)

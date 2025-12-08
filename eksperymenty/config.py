@@ -21,6 +21,8 @@ REPORTS_DIR = "_reports"
 SPLITS = RepeatedStratifiedKFold(random_state=RANDOM_STATE)
 N_SPLITS = SPLITS.get_n_splits()
 
+from sklearn.pipeline import Pipeline
+
 METHODS = {
     "GNB": GaussianNB(),
     "KNN": KNeighborsClassifier(),
