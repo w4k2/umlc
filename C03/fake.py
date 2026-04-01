@@ -57,7 +57,7 @@ for rep_idx, (seed, splitter) in enumerate(tqdm(SPLITS)):
 
         classifiers_scores = []
 
-        for clf_name, clf_base in CLASSIFIERS:
+        for (clf_name, clf_base) in CLASSIFIERS:
             clf = clone(clf_base)
             clf.fit(X[train], y[train])
             y_pred = clf.predict(X[test])

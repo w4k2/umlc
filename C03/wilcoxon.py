@@ -30,7 +30,7 @@ CLASSIFIERS = [
     ("NC_E", NearestCentroid(metric="euclidean")),
     ("NC_M", NearestCentroid(metric="manhattan")),
     ("KNN", KNeighborsClassifier()),
-    ("MLP", MLPClassifier()),
+    # ("MLP", MLPClassifier()),
 ]
 
 SPLITS = []

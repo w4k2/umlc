@@ -29,5 +29,5 @@ class NearestCentroidEx(BaseEstimator, ClassifierMixin):
         return self
 
     def predict(self, X):
-        dist_mat = cdist(X, self._centroids, metric='minkowski', p=2)
+        dist_mat = cdist(X, self._centroids, metric='minkowski', p=self.p)
         return self._classes.take(np.argmin(dist_mat, axis=1))

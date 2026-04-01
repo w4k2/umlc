@@ -1,12 +1,10 @@
-from sklearn.neighbors import NearestCentroid
-from nearest_centroid import NearestCentroidEx
-
-from sklearn.datasets import make_classification
-from sklearn.model_selection import ShuffleSplit
-from sklearn.metrics import accuracy_score
-
-from sklearn.base import clone
 import numpy as np
+from nearest_centroid import NearestCentroidEx
+from sklearn.base import clone
+from sklearn.datasets import make_classification
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import ShuffleSplit
+from sklearn.neighbors import NearestCentroid
 
 sklearn_clf = NearestCentroid()
 um_clf = NearestCentroidEx(center_function='median')

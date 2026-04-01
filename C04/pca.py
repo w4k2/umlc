@@ -38,4 +38,5 @@ class PCA(BaseEstimator, TransformerMixin):
         X_scaled = np.nan_to_num((X - self.mean_) / self.std_)
 
         # Make Projection
+        # np.dot(X_scaled, eigenvector_subset)
         return X_scaled @ eigenvector_subset

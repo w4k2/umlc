@@ -19,7 +19,7 @@ mask = np.isin(y, y_sel).flatten()
 X = X[mask]
 y = y[mask]
 
-print(len(X))
+# print(len(X))
 
 # print(X[0])
 # print(y_names[y[0]])
@@ -28,15 +28,17 @@ print(len(X))
 
 X_vec = TfidfVectorizer().fit_transform(X)
 
-X_ = PCA(n_components=2).fit_transform(X_vec)
+# X_ = PCA(n_components=2).fit_transform(X_vec)
 
-fig, ax = plt.subplots(1, 1)
+# fig, ax = plt.subplots(1, 1)
 
-for l in np.unique(y):
-    ax.scatter(*X_[y == l].T, label=y_names[l])
+# for l in np.unique(y):
+#     ax.scatter(*X_[y == l].T, label=y_names[l])
 
-plt.legend()
-plt.savefig("foo.png")
+# plt.legend()
+# plt.savefig("foo.png")
+
+# exit()
 
 mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=20, verbose=True)
 mlp.fit(X_vec, y)

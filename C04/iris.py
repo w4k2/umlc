@@ -11,18 +11,20 @@ X, y = load_iris(return_X_y=True)
 
 X = StandardScaler().fit_transform(X)
 
-fig, axs = plt.subplots(4, 4, figsize=(12, 12))
+# fig, axs = plt.subplots(4, 4, figsize=(12, 12))
 
-for i in range(len(X.T)):
-    for j in range(len(X.T)):
-        if i == j:
-            continue
+# for i in range(len(X.T)):
+#     for j in range(len(X.T)):
+#         # if i == j:
+#         #     continue
 
-        ax = axs[i, j]
-        ax.scatter(X[:, i], X[:, j], c=y)
-        ax.grid(ls=":")
+#         ax = axs[i, j]
+#         ax.scatter(X[:, i], X[:, j], c=y)
+#         ax.grid(ls=":")
 
-plt.savefig("foo.png")
+# plt.savefig("foo.png")
+
+# exit()
 
 fig, axs = plt.subplots(1, 2, figsize=(8, 4))
 
@@ -31,6 +33,8 @@ pca_ = PCA_(k=2)
 X_ = pca_.fit(X, y).transform(X)
 ax.scatter(*X_.T, c=y)
 
+print(pca_.eigenvalues_)
+
 ax = axs[1]
 
 pca = PCA(n_components=2, svd_solver="covariance_eigh")
@@ -38,7 +42,10 @@ X_ = StandardScaler().fit_transform(X)
 X_ = pca.fit(X_, y).transform(X_)
 ax.scatter(*X_.T, c=y)
 
+
 plt.savefig("bar.png")
+
+exit()
 
 fig, axs = plt.subplots(4, 4, figsize=(12, 12))
 
