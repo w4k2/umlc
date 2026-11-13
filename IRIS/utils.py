@@ -79,7 +79,7 @@ def plot_scatter(batch):
     n_classes = len(target_names)
     n_features = len(feature_names)
 
-    fig, axs = plt.subplots(n_features, n_features, figsize=(0.5 * n_features * BW, 0.5 * n_features * BW))
+    fig, axs = plt.subplots(n_features, n_features, figsize=(0.3 * n_features * BW, 0.3 * n_features * BW))
 
     X_min, X_max = np.min(X) - 0.5, np.max(X) + 0.5
 
@@ -94,7 +94,6 @@ def plot_scatter(batch):
                 axs[i, j].plot(ls, kde(ls), color=c)
                 # axs[i, j].set_xticks([])
                 # axs[i, j].set_yticks([])
-                axs[i, j].grid(":")
 
             axs[i, j].grid(True, ls=":")
             continue
@@ -107,6 +106,6 @@ def plot_scatter(batch):
             axs[i, j].set_ylim(X_min, X_max)
             # axs[i, j].set_xticks([])
             # axs[i, j].set_yticks([])
-            axs[i, j].grid(":")
+            axs[i, j].grid(True, ls=":")
 
     plt.tight_layout()

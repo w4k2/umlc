@@ -11,21 +11,6 @@ X, y = load_iris(return_X_y=True)
 
 X = StandardScaler().fit_transform(X)
 
-# fig, axs = plt.subplots(4, 4, figsize=(12, 12))
-
-# for i in range(len(X.T)):
-#     for j in range(len(X.T)):
-#         # if i == j:
-#         #     continue
-
-#         ax = axs[i, j]
-#         ax.scatter(X[:, i], X[:, j], c=y)
-#         ax.grid(ls=":")
-
-# plt.savefig("foo.png")
-
-# exit()
-
 fig, axs = plt.subplots(1, 2, figsize=(8, 4))
 
 ax = axs[0]
